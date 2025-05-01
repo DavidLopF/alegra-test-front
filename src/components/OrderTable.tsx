@@ -1,5 +1,4 @@
-// src/components/OrderTable.tsx
-import React from 'react';
+
 import { Order } from '../types/order';
 import { Button, Badge, Table } from 'flowbite-react';
 

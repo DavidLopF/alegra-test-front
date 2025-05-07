@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { createOrder } from '../services/api';
 import { KitchenService } from '../services/ktichen.service';
 import { Recipe } from '../types/recipe';
+import { useNavigate } from 'react-router-dom';
 
 const kitchenService = new KitchenService();
 
 export function OrderForm() {
+  const navigate = useNavigate();
   // Mantenemos quantity como string para que el input pueda estar vacío
   const [recipeId, setRecipeId] = useState<number>(1);
   const [quantityStr, setQuantityStr] = useState<string>('');
@@ -45,7 +47,8 @@ export function OrderForm() {
 
     try {
       await createOrder(recipeId, quantity);
-      alert('Orden creada con éxito 🎉');
+      //redirecciona a la pagina de inicio
+      navigate('/');
       setQuantityStr(''); // limpia el campo si quieres
     } catch {
       alert('Hubo un error al crear la orden.');

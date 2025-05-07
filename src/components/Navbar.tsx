@@ -10,6 +10,7 @@ export function Navbar() {
         <Link to="/">Órdenes</Link>
         <Link to="/new">Crear Orden</Link>
         <Link to="/ingredients">Inventario</Link>
+        <Link to="/shopping-history">Historial de Compras</Link>
       </div>
     </FlowNav>
   );

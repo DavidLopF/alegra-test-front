@@ -1,10 +1,8 @@
-
 import { Order } from '../types/order';
-import { Button, Badge, Table } from 'flowbite-react';
+import { Badge, Table } from 'flowbite-react';
 
 interface Props {
   orders: Order[];
-  onCooked: (id: number) => void;
 }
 
 function statusBadge(status: string) {
@@ -22,7 +20,7 @@ function statusBadge(status: string) {
   }
 }
 
-export function OrderTable({ orders, onCooked }: Props) {
+export function OrderTable({ orders }: Props) {
   return (
     <div className="overflow-x-auto">
       <Table hoverable>
@@ -56,15 +54,11 @@ export function OrderTable({ orders, onCooked }: Props) {
               </Table.Cell>
 
               <Table.Cell className="space-x-2">
-                {/* Mostrar botón solo si no está cocinada y no tiene fallo de stock */}
-                {o.status !== 'COOKED' && o.status !== 'FAILED_STOCK' && (
-                  <Button
-                    size="xs"
-                    color="success"
-                    onClick={() => onCooked(o.id)}
-                  >
-                    Plato Cocinado
-                  </Button>
+                {o.status !== 'COOKED' && (
+                  <div className="flex items-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                    <span className="text-sm text-gray-600">Procesando...</span>
+                  </div>
                 )}
               </Table.Cell>
             </Table.Row>
